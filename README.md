@@ -2,5 +2,4 @@
 
 個人網站ʕ•̀ω•́ʔ✧
 
-[參考網站](https://israynotarray.com/categories/hexo/)
-[Theme](https://korilin.github.io/hexo-theme-particle-demo/full/public/)
+[Astro](https://docs.astro.build/en/getting-started/)
