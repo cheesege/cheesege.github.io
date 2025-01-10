@@ -1,0 +1,36 @@
+body,div{
+    display: flex;
+    border:0;
+    margin: 0;
+    padding: 0;
+    
+}
+.blank{
+    height: 100%;
+    width: 20vw;
+}
+
+.banner{
+    min-height:auto;
+    width: 80vw;
+    height: 20vh;
+    align-content: center;
+    justify-content: center;
+    justify-self: center;
+
+    background-image: url("./img/banner.jpeg");
+    background-size: 100% 100%;
+}
+
+.icon{
+    width: 10px;
+    height: 10px;
+}
+
+
+.photo{
+    display: block;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
