@@ -7,8 +7,9 @@ body{
     margin: 0;
     padding: 0;
     background-color: #120b00;
-    font-family: monospace;
-    font-weight: 600;
+    /* 使用思源黑體 (Noto Sans TC) bold，備援 sans-serif */
+    font-family: 'Noto Sans TC', 'Noto Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
     line-height: 1.5;
 }
 
@@ -20,12 +21,14 @@ body{
     color: #f7e4be;
 }
 .content > p::before{
-    content: ">";
+    content: "> ";
 }
 
-.title img {
+.title svg, .title img {
     width: 16px;
     height: 16px;
+    color: #ffb627; /* use currentColor in inline SVG to match theme */
+    flex-shrink: 0;
 }
 
 .title p {
