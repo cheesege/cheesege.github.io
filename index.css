@@ -2,10 +2,12 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* 設置視窗高度以便上下置中 */
-    border:0;
+    /* 使用 min-height 並加上上下 padding，讓畫面最上與最下留一些空間
+       這樣垂直置中仍會發生，但會在視窗上下保留距離。 */
+    min-height: 100vh; /* 保持至少視窗高度 */
+    border: 0;
     margin: 0;
-    padding: 0;
+    padding: 40px 0; /* 上下各 40px 的間距；可視需要調整為 20/60 等 */
     background-color: #120b00;
     /* 使用思源黑體 (Noto Sans TC) bold，備援 sans-serif */
     font-family: 'Noto Sans TC', 'Noto Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -46,6 +48,8 @@ p {
     background-color: rgba(255, 182, 39, 0.05); /* 5% 透明度 */
     border: 2px solid #ffb627; /* 100% 不透明邊框 */
     margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
     padding-left: 30px;
     padding-right: 30px;
     padding-bottom: 20px;
@@ -54,6 +58,7 @@ p {
     max-width: 800px;
     border-radius: 8px;
     box-shadow: 0 0 10px #ffb627, inset 0 0 10px #ffb627;
+
 }
 
 hr{
