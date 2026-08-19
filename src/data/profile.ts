@@ -19,14 +19,14 @@ export const education = [
 export type Entry = { year: string; text: string; highlight?: boolean };
 
 export const experience: Entry[] = [
-  { year: '', text: '中和流行音樂社16th 器材' },
+  { year: '2022', text: '中和流行音樂社16th 器材' },
   { year: '2024', text: '夏 APCS 模擬測驗團隊 x APCS Guide 聯合營隊 工人' },
   { year: '2025', text: '冬 APCS 模擬測驗團隊 x APCS Guide 聯合營隊 講師' },
   { year: '2025', text: '夏 APCS 模擬測驗團隊 x APCS Guide 聯合營隊 講師' },
-  { year: '', text: '逢甲大學黑客社 12th 學術' },
+  { year: '2025', text: '逢甲大學黑客社 12th 學術' },
   { year: '2025', text: 'AIS3 CLUB 中區資安體驗營 講師' },
   { year: '2026', text: '冬 APCS 模擬測驗團隊 x APCS Guide 聯合營隊 講師/隊輔' },
-  { year: '', text: '逢甲大學黑客社 13th 社長', highlight: true },
+  { year: '2026', text: '逢甲大學黑客社 13th 社長', highlight: true },
   { year: '2026', text: '夏 APCS 模擬測驗團隊 x APCS Guide 聯合營隊 講師/隊輔' },
 ];
 
@@ -97,10 +97,7 @@ export type FriendSite = {
 };
 
 export const friendSites: FriendSite[] = [
-  { name: '友站名稱 A', href: '#' },
-  { name: '友站名稱 B', href: '#' },
-  { name: '友站名稱 C', href: '#' },
-  { name: '友站名稱 D', href: '#' },
+  { name: '黑客社', href: 'https://hackersir.org' },
 ];
 
 export const nav = [

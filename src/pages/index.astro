@@ -19,37 +19,35 @@ import { experience, contests, performances } from '../data/profile';
   <main id="main">
     <Hero />
 
-    <Section id="about" title="關於" icon="user" kicker="一個寫程式也玩音樂的人。">
+    <Section id="about" title="關於" icon="user" kicker="你覺得我是什麼樣的人">
       <div class="about reveal">
         <p>
           嗨，我是 <strong>cheese_ge</strong>，也可以叫我起司、起司哥、cheese 或
-          cheesege —— 要不要加底線是我的自由。
+          cheesege，讓我知道你在叫我就好。
         </p>
         <p>
-          目前在 <strong>逢甲大學資訊工程學系</strong>，高中念的是
-          <strong>新北市立中和高中</strong>。日常大致上就兩件事：<strong>資訊</strong> 跟
-          <strong>音樂</strong>。前者從競程、資安一路玩到帶營隊當講師，後者從高中的流行音樂社一路彈到大學的舞台上。
+          目前是逢甲資工大三，黑客社社長，以前待過流行音樂社，喜歡去 KTV，對 TCG 有點興趣。
         </p>
       </div>
     </Section>
 
-    <Section id="experience" title="經歷" icon="check" kicker="社團、營隊、講師與各種工人時光。">
+    <Section id="experience" title="經歷" icon="check" kicker="希望能多做一點事情">
       <Timeline items={experience} />
     </Section>
 
-    <Section id="contest" title="比賽/檢定" icon="flag" kicker="檢定成績與歷年隊伍戰績。">
+    <Section id="contest" title="比賽/檢定" icon="flag" kicker="那些打過的比賽跟蹭過的比賽">
       <Timeline items={contests} />
     </Section>
 
-    <Section id="performance" title="表演" icon="mic" kicker="上台的日子。">
+    <Section id="performance" title="表演" icon="mic" kicker="以前表演過">
       <Timeline items={performances} />
     </Section>
 
-    <Section id="contact" title="聯絡方式" icon="mail" kicker="有事找我，挑一個順手的管道就好。">
+    <Section id="contact" title="聯絡方式" icon="mail" kicker="你可以從這些地方找到我，如果需要的話">
       <Contacts />
     </Section>
 
-    <Section id="friends" title="友站" icon="link" kicker="一些值得逛逛的地方。">
+    <Section id="friends" title="友站" icon="link" kicker="朋友或一些可以去看看的地方">
       <Friends />
     </Section>
   </main>
