@@ -6,6 +6,7 @@ import Section from '../components/Section.astro';
 import Timeline from '../components/Timeline.astro';
 import Contacts from '../components/Contacts.astro';
 import Friends from '../components/Friends.astro';
+import Certifications from '../components/Certifications.astro';
 import Footer from '../components/Footer.astro';
 import { experience, contests, performances } from '../data/profile';
 ---
@@ -35,8 +36,12 @@ import { experience, contests, performances } from '../data/profile';
       <Timeline items={experience} />
     </Section>
 
-    <Section id="contest" title="比賽/檢定" icon="flag" kicker="那些打過的比賽跟蹭過的比賽">
+    <Section id="contest" title="比賽" icon="flag" kicker="那些打過的比賽跟蹭過的比賽">
       <Timeline items={contests} />
+    </Section>
+
+    <Section id="cert" title="檢定" icon="badge" kicker="考過的檢定">
+      <Certifications />
     </Section>
 
     <Section id="performance" title="表演" icon="mic" kicker="以前表演過">

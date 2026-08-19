@@ -5,80 +5,93 @@ export interface Props {
   items: Entry[];
 }
 const { items } = Astro.props;
+
+/**
+ * 把「連續相同年份」的項目併成一組，年份只在該組開頭顯示一次。
+ * 只併相鄰的項目，所以就算之後插入不照順序的資料，也只會多出一組，不會亂接。
+ */
+type Group = { year: string; entries: Entry[] };
+
+const groups = items.reduce<Group[]>((acc, item) => {
+  const last = acc.at(-1);
+  if (last && last.year === item.year) last.entries.push(item);
+  else acc.push({ year: item.year, entries: [item] });
+  return acc;
+}, []);
 ---
 
-<ol class="timeline">
-  {items.map((item, i) => (
-    <li class:list={['row', 'reveal', { hot: item.highlight }]} style={`--delay:${Math.min(i, 8) * 45}ms`}>
-      <span class="year">{item.year || '—'}</span>
-      <span class="node" aria-hidden="true"></span>
-      <span class="body">{item.text}</span>
-    </li>
+<div class="timeline">
+  {groups.map((group, gi) => (
+    <section class="group reveal" style={`--delay:${Math.min(gi, 6) * 60}ms`}>
+      <h3 class="year">{group.year}</h3>
+
+      <ol class="entries">
+        {group.entries.map((entry) => (
+          <li class:list={['row', { hot: entry.highlight }]}>
+            <span class="node" aria-hidden="true"></span>
+            <span class="body">{entry.text}</span>
+          </li>
+        ))}
+      </ol>
+    </section>
   ))}
-</ol>
+</div>
 
 <style>
-  .timeline {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    position: relative;
+  .timeline { display: grid; }
+
+  .group {
+    display: grid;
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+    align-items: start;
   }
 
+  .year {
+    position: relative;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--amber);
+    text-align: right;
+    padding: 0.62rem 1rem 0 0;
+    white-space: nowrap;
+  }
+
+  .entries {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 1.6rem;
+    border-left: 2px solid var(--line);
+  }
+
+  /* 最後一組不留多餘的線尾 */
+  .group:last-child .entries { padding-bottom: 0; }
+
   .row {
-    display: grid;
-    grid-template-columns: 4.25rem 1.5rem minmax(0, 1fr);
-    align-items: start;
-    gap: 0 0.25rem;
-    padding: 0.55rem 0.75rem 0.55rem 0;
-    border-radius: var(--radius-sm);
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    gap: 0.85rem;
+    padding: 0.45rem 0.75rem 0.45rem 1.15rem;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     transition: background 0.2s ease, transform 0.2s ease;
   }
 
   .row:hover { background: var(--surface); transform: translateX(3px); }
 
-  .year {
-    font-family: var(--font-mono);
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--text-faint);
-    padding-top: 0.22rem;
-    text-align: right;
-    padding-right: 0.5rem;
-    white-space: nowrap;
-  }
-
   .node {
-    position: relative;
-    justify-self: center;
-    width: 9px;
-    height: 9px;
-    margin-top: 0.6rem;
+    position: absolute;
+    left: -6px;
+    top: 0.95rem;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: var(--bg);
     border: 2px solid var(--line-strong);
-    flex-shrink: 0;
+    transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
   }
 
-  /* 連接線 */
-  .node::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 100%;
-    translate: -50% 0;
-    width: 2px;
-    height: calc(100% + 1.6rem);
-    background: var(--line);
-  }
-  .row:last-child .node::before { display: none; }
-
-  .body {
-    color: var(--text-muted);
-    font-size: 0.98rem;
-    line-height: 1.6;
-    padding-top: 0.05rem;
-  }
+  .body { color: var(--text-muted); font-size: 0.98rem; line-height: 1.6; }
 
   .row:hover .body { color: var(--text); }
   .row:hover .node { border-color: var(--amber); }
@@ -89,11 +102,11 @@ const { items } = Astro.props;
     box-shadow: 0 0 0 4px color-mix(in srgb, var(--amber) 22%, transparent);
   }
   .hot .body { color: var(--text); font-weight: 700; }
-  .hot .year { color: var(--amber); }
 
   @media (max-width: 560px) {
-    .row { grid-template-columns: 3.2rem 1.25rem minmax(0, 1fr); }
-    .year { font-size: 0.75rem; }
+    .group { grid-template-columns: 3.4rem minmax(0, 1fr); }
+    .year { font-size: 0.85rem; padding-right: 0.7rem; }
     .body { font-size: 0.92rem; }
+    .row { padding-left: 1rem; gap: 0.6rem; }
   }
 </style>

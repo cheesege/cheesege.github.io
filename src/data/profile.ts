@@ -16,6 +16,10 @@ export const education = [
   { school: '逢甲大學', note: '資訊工程學系' },
 ];
 
+/**
+ * 時間軸項目。experience / contests / performances 都是照時間由舊到新排，
+ * Timeline 會把「連續相同年份」併成一組，年份只顯示一次。
+ */
 export type Entry = { year: string; text: string; highlight?: boolean };
 
 export const experience: Entry[] = [
@@ -30,9 +34,15 @@ export const experience: Entry[] = [
   { year: '2026', text: '夏 APCS 模擬測驗團隊 x APCS Guide 聯合營隊 講師/隊輔' },
 ];
 
+/** 檢定：沒有時間軸概念，單獨一區。 */
+export type Certification = { name: string; result: string };
+
+export const certifications: Certification[] = [
+  { name: 'APCS', result: '觀念4 實作4' },
+  { name: 'CPE', result: '5題' },
+];
+
 export const contests: Entry[] = [
-  { year: '', text: 'APCS 觀念4 實作4' },
-  { year: '', text: 'CPE 5題' },
   { year: '2022', text: '新北市學科能力競賽 資訊科 佳作' },
   { year: '2023', text: '新北市學科能力競賽 資訊科 佳作' },
   { year: '2024', text: 'NCPC rk.115 "起司電神帶我飛orz"' },
@@ -103,7 +113,8 @@ export const friendSites: FriendSite[] = [
 export const nav = [
   { id: 'about', label: '關於' },
   { id: 'experience', label: '經歷' },
-  { id: 'contest', label: '比賽/檢定' },
+  { id: 'contest', label: '比賽' },
+  { id: 'cert', label: '檢定' },
   { id: 'performance', label: '表演' },
   { id: 'contact', label: '聯絡方式' },
   { id: 'friends', label: '友站' },

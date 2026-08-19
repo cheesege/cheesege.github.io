@@ -95,13 +95,16 @@ import { profile, education } from '../data/profile';
     font-size: clamp(2.9rem, 9vw, 5rem);
     font-weight: 900;
     letter-spacing: -0.045em;
+    /* Noto Sans TC 的內容高度大於 line-height 1.2，底線與 g 的下伸部會溢出
+       行框壓到下一行，這裡補出下伸部需要的空間 */
+    padding-bottom: 0.18em;
     background: linear-gradient(100deg, var(--amber-deep), var(--amber) 42%, var(--amber-soft));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
-  .quip { color: var(--text-faint); font-size: 0.95rem; margin-top: 0.25rem; }
+  .quip { color: var(--text-faint); font-size: 0.95rem; margin-top: 0.4rem; }
 
   .tagline { margin-top: 1.1rem; font-size: clamp(1.15rem, 2.6vw, 1.5rem); font-weight: 700; }
   .tag { color: var(--text); }

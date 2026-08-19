@@ -7,6 +7,7 @@ export interface Props {
     | 'mic'
     | 'cap'
     | 'user'
+    | 'badge'
     | 'mail'
     | 'github'
     | 'discord'
@@ -59,6 +60,12 @@ const { name, class: className } = Astro.props;
     <>
       <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/>
       <path d="M4.5 20.5c0-3.6 3.36-6 7.5-6s7.5 2.4 7.5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </>
+  )}
+  {name === 'badge' && (
+    <>
+      <circle cx="12" cy="9" r="6" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8.2 14.2 7 22l5-2.6L17 22l-1.2-7.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
     </>
   )}
   {name === 'mail' && (
