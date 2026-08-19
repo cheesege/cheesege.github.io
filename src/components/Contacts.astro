@@ -5,40 +5,76 @@ import { contacts } from '../data/profile';
 
 <div class="grid">
   {contacts.map((c, i) => {
-    const disabled = c.href === '#';
-    const Tag = disabled ? 'div' : 'a';
-    return (
-      <Tag
-        class:list={['card', 'reveal', { disabled }]}
-        style={`--delay:${i * 60}ms`}
-        {...(disabled ? {} : { href: c.href, target: c.href.startsWith('http') ? '_blank' : undefined, rel: c.href.startsWith('http') ? 'noopener noreferrer' : undefined })}
-      >
-        <span class="icon"><Icon name={c.icon} class="ico" /></span>
+    const linked = c.href !== '#';
+    const style = `--delay:${i * 60}ms`;
 
+    const inner = (
+      <>
+        <span class="icon"><Icon name={c.icon} class="ico" /></span>
         <span class="meta">
           <span class="label">{c.label}</span>
           <span class="value">{c.value}</span>
         </span>
+      </>
+    );
 
-        {c.copy ? (
-          <button
-            class="act"
-            type="button"
-            data-copy={c.value}
-            aria-label={`複製 ${c.label}`}
-          >
+    // 有真實連結 + 可複製：卡片為容器，連結用 stretched link 蓋滿整張，
+    // 複製鈕浮在上層（避免 <button> 巢狀在 <a> 內的無效 HTML）
+    if (linked && c.copy) {
+      return (
+        <div class="card reveal" style={style}>
+          <span class="icon"><Icon name={c.icon} class="ico" /></span>
+          <span class="meta">
+            <span class="label">{c.label}</span>
+            <a
+              class="value stretch"
+              href={c.href}
+              target={c.href.startsWith('http') ? '_blank' : undefined}
+              rel={c.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+            >{c.value}</a>
+          </span>
+          <button class="act raised" type="button" data-copy={c.value} aria-label={`複製 ${c.label}`}>
             <Icon name="copy" class="ico" />
             <Icon name="check" class="ico check" />
           </button>
-        ) : (
+        </div>
+      );
+    }
+
+    // 只有連結：整張卡片就是連結
+    if (linked) {
+      return (
+        <a
+          class="card reveal"
+          style={style}
+          href={c.href}
+          target={c.href.startsWith('http') ? '_blank' : undefined}
+          rel={c.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+        >
+          {inner}
           <span class="act arrow" aria-hidden="true"><Icon name="arrow" class="ico" /></span>
-        )}
-      </Tag>
+        </a>
+      );
+    }
+
+    // 沒有連結但可複製：整張卡片就是複製鈕
+    return (
+      <button
+        class="card as-button reveal"
+        style={style}
+        type="button"
+        data-copy={c.value}
+        aria-label={`複製 ${c.label}：${c.value}`}
+      >
+        {inner}
+        <span class="act" aria-hidden="true">
+          <Icon name="copy" class="ico" />
+          <Icon name="check" class="ico check" />
+        </span>
+      </button>
     );
   })}
 </div>
-
-<p class="hint reveal">未填的連結請在 <code>src/data/profile.ts</code> 的 <code>contacts</code> 補上。</p>
 
 <style>
   .grid {
@@ -52,25 +88,29 @@ import { contacts } from '../data/profile';
   }
 
   .card {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 0.9rem;
+    width: 100%;
     padding: 1rem 1.1rem;
+    text-align: left;
+    font: inherit;
+    color: inherit;
     border-radius: var(--radius);
     border: 1px solid var(--line);
     background: var(--surface);
+    cursor: pointer;
     transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
       border-color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
   }
 
-  a.card:hover {
+  .card:hover {
     transform: translateY(-3px);
     border-color: var(--line-strong);
     background: var(--surface-hover);
     box-shadow: var(--glow);
   }
-
-  .card.disabled { opacity: 0.72; }
 
   .icon {
     display: grid;
@@ -86,7 +126,13 @@ import { contacts } from '../data/profile';
   .icon :global(.ico) { width: 20px; height: 20px; }
 
   .meta { display: grid; min-width: 0; flex: 1; }
-  .label { font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-faint); font-weight: 600; }
+  .label {
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    font-weight: 600;
+  }
   .value {
     font-family: var(--font-mono);
     font-size: 0.92rem;
@@ -108,26 +154,34 @@ import { contacts } from '../data/profile';
     background: transparent;
     color: var(--text-faint);
     cursor: pointer;
-    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    transition: color 0.2s ease, background 0.2s ease,
+      border-color 0.2s ease, transform 0.2s ease;
   }
-  .act :global(.ico) { grid-area: 1 / 1; width: 16px; height: 16px; transition: opacity 0.18s ease, transform 0.18s ease; }
+  .act :global(.ico) {
+    grid-area: 1 / 1;
+    width: 16px;
+    height: 16px;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+  }
   .act :global(.check) { opacity: 0; transform: scale(0.6); color: var(--amber); }
 
   button.act:hover { color: var(--amber); background: var(--surface-hover); border-color: var(--line); }
-  button.act.copied :global(.ico) { opacity: 0; }
-  button.act.copied :global(.check) { opacity: 1; transform: none; }
+  .card:hover .act { color: var(--amber); }
+  .arrow { transition: transform 0.2s ease, color 0.2s ease; }
+  a.card:hover .arrow { transform: translate(2px, -2px); }
 
-  .arrow { color: var(--text-faint); }
-  a.card:hover .arrow { color: var(--amber); transform: translate(2px, -2px); }
-
-  .hint { margin-top: 1rem; font-size: 0.82rem; color: var(--text-faint); }
-  .hint code {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    padding: 0.1rem 0.35rem;
-    border-radius: 5px;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    color: var(--amber);
+  /* stretched link：讓整張卡片可點，但 DOM 上不巢狀互動元素 */
+  a.value { display: block; }
+  a.stretch::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
   }
+  .raised { position: relative; z-index: 1; }
+
+  /* 複製成功：只換掉 .act 裡的圖示，避免連卡片左側的品牌圖示一起被藏起來
+     （.copied 可能落在 .act 上，也可能落在整張卡片上） */
+  :is(.act.copied, .copied .act) :global(.ico) { opacity: 0; }
+  :is(.act.copied, .copied .act) :global(.check) { opacity: 1; transform: none; }
 </style>

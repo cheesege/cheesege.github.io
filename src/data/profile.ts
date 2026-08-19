@@ -51,7 +51,7 @@ export const performances: Entry[] = [
   { year: '2025', text: '05/23 逢甲大學資訊系系學會 資訊之夜' },
 ];
 
-/** 聯絡方式：href 直接改成自己的連結即可，copy 為 true 時卡片會提供「複製」按鈕。 */
+/** 聯絡方式：href 是真實連結時卡片可點；href 為 '#' 且 copy 為 true 時，整張卡片按一下複製。 */
 export type Contact = {
   label: string;
   value: string;
@@ -63,8 +63,8 @@ export type Contact = {
 export const contacts: Contact[] = [
   {
     label: 'Email',
-    value: 'cheese5skin@gmail.com',
-    href: 'mailto:cheese5skin@gmail.com',
+    value: 'me@cheesege.com',
+    href: 'mailto:me@cheesege.com',
     icon: 'mail',
     copy: true,
   },
@@ -83,50 +83,24 @@ export const contacts: Contact[] = [
   },
   {
     label: 'Instagram',
-    value: '@cheese_ge',
+    value: '@chen.cheese.ge',
     href: '#',
     icon: 'instagram',
+    copy: true,
   },
 ];
 
-/** 友站：目前為佔位資料，改成真實的站名 / 描述 / 網址即可。 */
+/** 友站：把 name 與 href 換成真實資料即可，href 為 '#' 時卡片不可點。 */
 export type FriendSite = {
   name: string;
-  owner: string;
-  description: string;
   href: string;
-  placeholder?: boolean;
 };
 
 export const friendSites: FriendSite[] = [
-  {
-    name: '友站名稱 A',
-    owner: 'someone',
-    description: '一句話介紹這個站在寫什麼。',
-    href: '#',
-    placeholder: true,
-  },
-  {
-    name: '友站名稱 B',
-    owner: 'someone',
-    description: '一句話介紹這個站在寫什麼。',
-    href: '#',
-    placeholder: true,
-  },
-  {
-    name: '友站名稱 C',
-    owner: 'someone',
-    description: '一句話介紹這個站在寫什麼。',
-    href: '#',
-    placeholder: true,
-  },
-  {
-    name: '友站名稱 D',
-    owner: 'someone',
-    description: '一句話介紹這個站在寫什麼。',
-    href: '#',
-    placeholder: true,
-  },
+  { name: '友站名稱 A', href: '#' },
+  { name: '友站名稱 B', href: '#' },
+  { name: '友站名稱 C', href: '#' },
+  { name: '友站名稱 D', href: '#' },
 ];
 
 export const nav = [
