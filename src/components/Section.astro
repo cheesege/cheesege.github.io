@@ -1,0 +1,64 @@
+---
+import Icon from './Icon.astro';
+
+export interface Props {
+  id: string;
+  title: string;
+  icon?: 'check' | 'flag' | 'mic' | 'mail' | 'link' | 'user';
+  kicker?: string;
+}
+const { id, title, icon, kicker } = Astro.props;
+---
+
+<section class="section" id={id}>
+  <div class="wrap">
+    <header class="head reveal">
+      <div class="title">
+        {icon && <span class="badge"><Icon name={icon} class="ico" /></span>}
+        <h2>{title}</h2>
+      </div>
+      {kicker && <p class="kicker">{kicker}</p>}
+      <span class="rule" aria-hidden="true"></span>
+    </header>
+
+    <slot />
+  </div>
+</section>
+
+<style>
+  .section { padding: clamp(2.5rem, 7vw, 4.5rem) 0; }
+
+  .head { margin-bottom: clamp(1.5rem, 4vw, 2.25rem); }
+
+  .title { display: flex; align-items: center; gap: 0.75rem; }
+
+  .badge {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    border: 1px solid var(--line-strong);
+    background: var(--surface);
+    color: var(--amber);
+    flex-shrink: 0;
+    box-shadow: var(--glow);
+  }
+  .badge :global(.ico) { width: 19px; height: 19px; }
+
+  h2 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+  }
+
+  .kicker { margin-top: 0.6rem; color: var(--text-muted); font-size: 0.95rem; }
+
+  .rule {
+    display: block;
+    height: 2px;
+    margin-top: 1.1rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--amber), color-mix(in srgb, var(--amber) 20%, transparent) 45%, transparent);
+  }
+</style>

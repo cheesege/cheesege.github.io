@@ -1,0 +1,99 @@
+---
+import type { Entry } from '../data/profile';
+
+export interface Props {
+  items: Entry[];
+}
+const { items } = Astro.props;
+---
+
+<ol class="timeline">
+  {items.map((item, i) => (
+    <li class:list={['row', 'reveal', { hot: item.highlight }]} style={`--delay:${Math.min(i, 8) * 45}ms`}>
+      <span class="year">{item.year || '—'}</span>
+      <span class="node" aria-hidden="true"></span>
+      <span class="body">{item.text}</span>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 4.25rem 1.5rem minmax(0, 1fr);
+    align-items: start;
+    gap: 0 0.25rem;
+    padding: 0.55rem 0.75rem 0.55rem 0;
+    border-radius: var(--radius-sm);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .row:hover { background: var(--surface); transform: translateX(3px); }
+
+  .year {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-faint);
+    padding-top: 0.22rem;
+    text-align: right;
+    padding-right: 0.5rem;
+    white-space: nowrap;
+  }
+
+  .node {
+    position: relative;
+    justify-self: center;
+    width: 9px;
+    height: 9px;
+    margin-top: 0.6rem;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--line-strong);
+    flex-shrink: 0;
+  }
+
+  /* 連接線 */
+  .node::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    translate: -50% 0;
+    width: 2px;
+    height: calc(100% + 1.6rem);
+    background: var(--line);
+  }
+  .row:last-child .node::before { display: none; }
+
+  .body {
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    line-height: 1.6;
+    padding-top: 0.05rem;
+  }
+
+  .row:hover .body { color: var(--text); }
+  .row:hover .node { border-color: var(--amber); }
+
+  .hot .node {
+    background: var(--amber);
+    border-color: var(--amber);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--amber) 22%, transparent);
+  }
+  .hot .body { color: var(--text); font-weight: 700; }
+  .hot .year { color: var(--amber); }
+
+  @media (max-width: 560px) {
+    .row { grid-template-columns: 3.2rem 1.25rem minmax(0, 1fr); }
+    .year { font-size: 0.75rem; }
+    .body { font-size: 0.92rem; }
+  }
+</style>

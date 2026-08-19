@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import Timeline from '../components/Timeline.astro';
+import Contacts from '../components/Contacts.astro';
+import Friends from '../components/Friends.astro';
+import Footer from '../components/Footer.astro';
+import { experience, contests, performances } from '../data/profile';
+---
+
+<BaseLayout
+  title="起司哥的個人網頁"
+  description="cheese_ge — 起司 / 起司哥 / cheese / cheesege。資訊，音樂。逢甲大學資訊工程學系、逢甲大學黑客社 13th 社長。"
+>
+  <Nav />
+
+  <main id="main">
+    <Hero />
+
+    <Section id="about" title="關於" icon="user" kicker="一個寫程式也玩音樂的人。">
+      <div class="about reveal">
+        <p>
+          嗨，我是 <strong>cheese_ge</strong>，也可以叫我起司、起司哥、cheese 或
+          cheesege —— 要不要加底線是我的自由。
+        </p>
+        <p>
+          目前在 <strong>逢甲大學資訊工程學系</strong>，高中念的是
+          <strong>新北市立中和高中</strong>。日常大致上就兩件事：<strong>資訊</strong> 跟
+          <strong>音樂</strong>。前者從競程、資安一路玩到帶營隊當講師，後者從高中的流行音樂社一路彈到大學的舞台上。
+        </p>
+      </div>
+    </Section>
+
+    <Section id="experience" title="經歷" icon="check" kicker="社團、營隊、講師與各種工人時光。">
+      <Timeline items={experience} />
+    </Section>
+
+    <Section id="contest" title="比賽/檢定" icon="flag" kicker="檢定成績與歷年隊伍戰績。">
+      <Timeline items={contests} />
+    </Section>
+
+    <Section id="performance" title="表演" icon="mic" kicker="上台的日子。">
+      <Timeline items={performances} />
+    </Section>
+
+    <Section id="contact" title="聯絡方式" icon="mail" kicker="有事找我，挑一個順手的管道就好。">
+      <Contacts />
+    </Section>
+
+    <Section id="friends" title="友站" icon="link" kicker="一些值得逛逛的地方。">
+      <Friends />
+    </Section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .about {
+    display: grid;
+    gap: 1rem;
+    max-width: 68ch;
+    color: var(--text-muted);
+    font-size: 1.02rem;
+    line-height: 1.85;
+  }
+  .about strong { color: var(--text); font-weight: 700; }
+</style>

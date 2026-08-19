@@ -1,0 +1,28 @@
+---
+import { profile } from '../data/profile';
+const year = new Date().getFullYear();
+---
+
+<footer class="foot">
+  <div class="wrap inner">
+    <p class="c">© {year} {profile.handle}</p>
+    <p class="built">Built with Astro · 起司口味</p>
+  </div>
+</footer>
+
+<style>
+  .foot {
+    margin-top: clamp(2rem, 6vw, 4rem);
+    border-top: 1px solid var(--line);
+    padding: 1.75rem 0 2.5rem;
+  }
+  .inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .c { font-family: var(--font-mono); font-size: 0.85rem; color: var(--amber); }
+  .built { font-size: 0.8rem; color: var(--text-faint); }
+</style>

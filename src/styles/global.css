@@ -1,0 +1,169 @@
+/* ---------------------------------------------------------------
+   Design tokens — 起司色 (#ffb627) 作為主色，沿用舊站的身分識別
+   --------------------------------------------------------------- */
+:root {
+  --amber: #ffb627;
+  --amber-soft: #ffd27a;
+  --amber-deep: #e08e00;
+
+  --bg: #0d0800;
+  --bg-elevated: #17100450;
+  --surface: rgba(255, 182, 39, 0.045);
+  --surface-hover: rgba(255, 182, 39, 0.09);
+  --line: rgba(255, 182, 39, 0.22);
+  --line-strong: rgba(255, 182, 39, 0.45);
+
+  --text: #f7f3ea;
+  --text-muted: #cdbfa4;
+  --text-faint: #8e8069;
+
+  --glow: 0 0 40px -12px rgba(255, 182, 39, 0.55);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --maxw: 940px;
+
+  --font: 'Noto Sans TC', system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas,
+    monospace;
+
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --bg: #fdfaf3;
+  --bg-elevated: #ffffff;
+  --surface: rgba(255, 182, 39, 0.09);
+  --surface-hover: rgba(255, 182, 39, 0.16);
+  --line: rgba(180, 120, 0, 0.22);
+  --line-strong: rgba(180, 120, 0, 0.4);
+
+  --amber: #b87400;
+  --amber-soft: #8a5600;
+  --amber-deep: #ffb627;
+
+  --text: #241a08;
+  --text-muted: #5e4f36;
+  --text-faint: #8b7a5d;
+
+  --glow: 0 12px 32px -18px rgba(120, 80, 0, 0.5);
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 92px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-weight: 500;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* 背景光暈 */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(60rem 40rem at 12% -10%, rgba(255, 182, 39, 0.16), transparent 60%),
+    radial-gradient(48rem 34rem at 92% 8%, rgba(255, 140, 39, 0.1), transparent 62%),
+    radial-gradient(50rem 40rem at 50% 108%, rgba(255, 182, 39, 0.1), transparent 65%);
+}
+
+/* 細格線 */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(70% 60% at 50% 0%, #000 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(70% 60% at 50% 0%, #000 0%, transparent 100%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+  line-height: 1.2;
+}
+
+p {
+  margin: 0;
+}
+
+::selection {
+  background: var(--amber);
+  color: #170f00;
+}
+
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.wrap {
+  width: min(100% - 2.5rem, var(--maxw));
+  margin-inline: auto;
+}
+
+/* 進場動畫 */
+/* 只有在 JS 可用時才隱藏，否則沒有 JS 的環境會整頁空白 */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--delay, 0ms);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

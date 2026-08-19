@@ -1,4 +1,5 @@
 node_modules/
-.astro
-
+dist/
+.astro/
 designed/
+.DS_Store
