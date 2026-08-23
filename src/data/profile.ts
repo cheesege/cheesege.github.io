@@ -5,7 +5,6 @@
 
 export const profile = {
   handle: 'cheese_ge',
-  aliases: '起司 / 起司哥 / cheese / cheesege',
   quip: '- 要不要加底線是我的自由',
   tags: ['資訊', '音樂'],
   tagline: '資訊，音樂',

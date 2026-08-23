@@ -6,11 +6,6 @@ import { profile, education } from '../data/profile';
 <section class="hero" id="top">
   <div class="wrap grid">
     <div class="text">
-      <p class="eyebrow reveal">
-        <span class="pill">HELLO</span>
-        {profile.aliases}
-      </p>
-
       <h1 class="reveal" style="--delay:60ms">
         <span class="handle">{profile.handle}</span>
       </h1>
@@ -67,28 +62,7 @@ import { profile, education } from '../data/profile';
     align-items: center;
   }
 
-  .eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    flex-wrap: wrap;
-    color: var(--text-muted);
-    font-size: 0.92rem;
-    font-family: var(--font-mono);
-  }
-
-  .pill {
-    padding: 0.2rem 0.6rem;
-    border-radius: 999px;
-    border: 1px solid var(--line-strong);
-    background: var(--surface);
-    color: var(--amber);
-    font-size: 0.7rem;
-    letter-spacing: 0.16em;
-    font-weight: 600;
-  }
-
-  h1 { margin: 0.7rem 0 0; }
+  h1 { margin: 0; }
 
   .handle {
     display: inline-block;
