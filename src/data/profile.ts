@@ -16,21 +16,33 @@ export const education = [
 ];
 
 /**
- * 時間軸項目。experience / contests / performances 都是照時間由舊到新排，
+ * 時間軸項目。contests / performances 照時間由舊到新排，
  * Timeline 會把「連續相同年份」併成一組，年份只顯示一次。
+ * 經歷是區間而非時間點，改用下面的 ExperienceItem。
  */
 export type Entry = { year: string; text: string; highlight?: boolean };
 
-export const experience: Entry[] = [
-  { year: '2022', text: '中和流行音樂社16th 器材' },
-  { year: '2024', text: '夏 APCS 模擬測驗團隊 x APCS Guide 聯合營隊 工人' },
-  { year: '2025', text: '冬 APCS 模擬測驗團隊 x APCS Guide 聯合營隊 講師' },
-  { year: '2025', text: '夏 APCS 模擬測驗團隊 x APCS Guide 聯合營隊 講師' },
-  { year: '2025', text: '逢甲大學黑客社 12th 學術' },
-  { year: '2025', text: 'AIS3 CLUB 中區資安體驗營 講師' },
-  { year: '2026', text: '冬 APCS 模擬測驗團隊 x APCS Guide 聯合營隊 講師/隊輔' },
-  { year: '2026', text: '逢甲大學黑客社 13th 社長', highlight: true },
-  { year: '2026', text: '夏 APCS 模擬測驗團隊 x APCS Guide 聯合營隊 講師/隊輔' },
+/**
+ * 經歷：一段經歷是一段「時間區間」，不是一個時間點，所以獨立於時間軸的
+ * Entry，period 直接寫成人看得懂的字串（'2025'、'2025 夏'、'2025 – 2026' 都可以）。
+ */
+export type ExperienceItem = {
+  period: string;
+  org: string;
+  role: string;
+  highlight?: boolean;
+};
+
+export const experience: ExperienceItem[] = [
+  { period: '2022', org: '中和流行音樂社16th', role: '器材' },
+  { period: '2024 夏', org: 'APCS 模擬測驗團隊 x APCS Guide 聯合營隊', role: '工人' },
+  { period: '2025 冬', org: 'APCS 模擬測驗團隊 x APCS Guide 聯合營隊', role: '講師' },
+  { period: '2025 夏', org: 'APCS 模擬測驗團隊 x APCS Guide 聯合營隊', role: '講師' },
+  { period: '2025', org: '逢甲大學黑客社 12th', role: '學術' },
+  { period: '2025', org: 'AIS3 CLUB 中區資安體驗營', role: '講師' },
+  { period: '2026 冬', org: 'APCS 模擬測驗團隊 x APCS Guide 聯合營隊', role: '講師/隊輔' },
+  { period: '2026', org: '逢甲大學黑客社 13th', role: '社長', highlight: true },
+  { period: '2026 夏', org: 'APCS 模擬測驗團隊 x APCS Guide 聯合營隊', role: '講師/隊輔' },
 ];
 
 /** 檢定：沒有時間軸概念，單獨一區。 */
@@ -48,7 +60,7 @@ export const contests: Entry[] = [
   { year: '2025', text: 'PUPC 銀獎 "cheeseOMG"' },
   { year: '2025', text: 'NCPC rk.56 "Cheese Burger"' },
   { year: '2025', text: 'TOPC rk.188 "Cheese Burger"' },
-  { year: '2025', text: '神盾盃 rk.7 "宵夜吃什麼"' },
+  { year: '2025', text: '神盾盃 Quals rk.10 Final rk.7 "宵夜吃什麼"' },
   { year: '2026', text: 'AIS3 Pre-Exam rk.170 "cheese_ge"' },
   { year: '2026', text: 'PUPC 金獎 "Strawberrry"', highlight: true },
 ];
