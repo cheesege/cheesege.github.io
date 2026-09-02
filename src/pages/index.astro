@@ -8,6 +8,7 @@ import Contacts from '../components/Contacts.astro';
 import Friends from '../components/Friends.astro';
 import Certifications from '../components/Certifications.astro';
 import Experience from '../components/Experience.astro';
+import Teaching from '../components/Teaching.astro';
 import Footer from '../components/Footer.astro';
 import { contests, performances } from '../data/profile';
 ---
@@ -34,6 +35,10 @@ import { contests, performances } from '../data/profile';
 
     <Section id="experience" title="經歷" icon="check" kicker="希望能多做一點事情">
       <Experience />
+    </Section>
+
+    <Section id="teaching" title="教課經驗" icon="board" kicker="教過的課程主題">
+      <Teaching />
     </Section>
 
     <Section id="contest" title="比賽" icon="flag" kicker="那些打過的比賽跟蹭過的比賽">

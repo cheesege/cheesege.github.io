@@ -34,15 +34,22 @@ export type ExperienceItem = {
 };
 
 export const experience: ExperienceItem[] = [
-  { period: '2022', org: '中和流行音樂社16th', role: '器材' },
-  { period: '2024 夏', org: 'APCS 模擬測驗團隊 x APCS Guide 聯合營隊', role: '工人' },
-  { period: '2025 冬', org: 'APCS 模擬測驗團隊 x APCS Guide 聯合營隊', role: '講師' },
-  { period: '2025 夏', org: 'APCS 模擬測驗團隊 x APCS Guide 聯合營隊', role: '講師' },
-  { period: '2025', org: '逢甲大學黑客社 12th', role: '學術' },
-  { period: '2025', org: 'AIS3 CLUB 中區資安體驗營', role: '講師' },
-  { period: '2026 冬', org: 'APCS 模擬測驗團隊 x APCS Guide 聯合營隊', role: '講師/隊輔' },
-  { period: '2026', org: '逢甲大學黑客社 13th', role: '社長', highlight: true },
-  { period: '2026 夏', org: 'APCS 模擬測驗團隊 x APCS Guide 聯合營隊', role: '講師/隊輔' },
+  { period: '2022 ~ 2023', org: '中和流行音樂社16th', role: '器材' },
+  { period: '2024 ~ present', org: 'APCS 模擬測驗團隊 x APCS Guide 聯合營隊', role: '工人/講師/隊輔' },
+  { period: '2025 ~ 2016', org: '逢甲大學黑客社 12th', role: '學術' },
+  { period: '2026 ~ present', org: '逢甲大學黑客社 13th', role: '社長', highlight: true },
+];
+
+/**
+ * 教課經驗：列教過的課程主題。context 寫場合或對象（在哪教、教誰）。
+ * 這一區與「經歷」各自獨立，經歷記的是身分與期間，這裡記的是教了什麼。
+ */
+export type TeachingTopic = { topic: string; context: string };
+
+export const teaching: TeachingTopic[] = [
+  { topic: '課程主題', context: '場合／對象' },
+  { topic: '課程主題', context: '場合／對象' },
+  { topic: '課程主題', context: '場合／對象' },
 ];
 
 /** 檢定：沒有時間軸概念，單獨一區。 */
@@ -124,6 +131,7 @@ export const friendSites: FriendSite[] = [
 export const nav = [
   { id: 'about', label: '關於' },
   { id: 'experience', label: '經歷' },
+  { id: 'teaching', label: '教課' },
   { id: 'contest', label: '比賽' },
   { id: 'cert', label: '檢定' },
   { id: 'performance', label: '表演' },

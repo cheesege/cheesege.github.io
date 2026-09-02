@@ -4,7 +4,15 @@ import Icon from './Icon.astro';
 export interface Props {
   id: string;
   title: string;
-  icon?: 'check' | 'flag' | 'mic' | 'mail' | 'link' | 'user' | 'badge';
+  icon?:
+    | 'check'
+    | 'flag'
+    | 'mic'
+    | 'mail'
+    | 'link'
+    | 'user'
+    | 'badge'
+    | 'board';
   kicker?: string;
 }
 const { id, title, icon, kicker } = Astro.props;
