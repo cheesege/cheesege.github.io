@@ -47,9 +47,7 @@ export const experience: ExperienceItem[] = [
 export type TeachingTopic = { topic: string; context: string };
 
 export const teaching: TeachingTopic[] = [
-  { topic: '課程主題', context: '場合／對象' },
-  { topic: '課程主題', context: '場合／對象' },
-  { topic: '課程主題', context: '場合／對象' },
+  { topic: '逆向工程', context: 'AIS3 中區資安體驗營' },
 ];
 
 /** 檢定：沒有時間軸概念，單獨一區。 */
