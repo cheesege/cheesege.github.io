@@ -103,9 +103,9 @@ export const contacts: Contact[] = [
   {
     label: 'Discord',
     value: 'cheese_ge',
-    href: '#',
+    href: 'https://discord.gg/kZ5RV4Wm',
     icon: 'discord',
-    copy: true,
+    
   },
   {
     label: 'Instagram',
