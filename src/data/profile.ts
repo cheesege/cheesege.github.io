@@ -36,7 +36,7 @@ export type ExperienceItem = {
 export const experience: ExperienceItem[] = [
   { period: '2022 ~ 2023', org: '中和流行音樂社16th', role: '器材' },
   { period: '2024 ~ present', org: 'APCS 模擬測驗團隊 x APCS Guide 聯合營隊', role: '工人/講師/隊輔' },
-  { period: '2025 ~ 2016', org: '逢甲大學黑客社 12th', role: '學術' },
+  { period: '2025 ~ 2026', org: '逢甲大學黑客社 12th', role: '學術' },
   { period: '2026 ~ present', org: '逢甲大學黑客社 13th', role: '社長', highlight: true },
 ];
 
