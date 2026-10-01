@@ -6,7 +6,7 @@ import { teaching } from '../data/profile';
   {teaching.map((t, i) => (
     <li class="card reveal" style={`--delay:${i * 60}ms`}>
       <span class="topic">{t.topic}</span>
-      <span class="context">{t.context}</span>
+      <span class="context">{t.course ? `${t.context} · ${t.course}` : t.context}</span>
     </li>
   ))}
 </ul>

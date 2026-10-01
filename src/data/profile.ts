@@ -37,17 +37,22 @@ export const experience: ExperienceItem[] = [
   { period: '2022 ~ 2023', org: '中和流行音樂社16th', role: '器材' },
   { period: '2024 ~ present', org: 'APCS 模擬測驗團隊 x APCS Guide 聯合營隊', role: '工人/講師/隊輔' },
   { period: '2025 ~ 2026', org: '逢甲大學黑客社 12th', role: '學術' },
+  { period: '2026 May', org: 'CCCTF 中部聯合資安競賽', role: '總召' },
   { period: '2026 ~ present', org: '逢甲大學黑客社 13th', role: '社長', highlight: true },
   { period: '2026 September', org: 'AIS3 新型態資安實務暑期課程', role: '結業' },
 ];
 
 /**
  * 教課經驗：列教過的課程主題。context 寫場合或對象（在哪教、教誰）。
+ * course 為選填的社課名稱，有填才會顯示。
  * 這一區與「經歷」各自獨立，經歷記的是身分與期間，這裡記的是教了什麼。
  */
-export type TeachingTopic = { topic: string; context: string };
+export type TeachingTopic = { topic: string; context: string; course?: string };
 
 export const teaching: TeachingTopic[] = [
+  { topic: 'Linux 基礎', context: '逢甲大學黑客社', course: 'Re: 從 1 開始的 Linux 生活' },
+  { topic: '逆向工程基礎', context: '逢甲大學黑客社', course: '那些年我們一起逆的程式' },
+  { topic: 'Android 逆向工程', context: '逢甲大學黑客社', course: '對綠色機器人使用逆向吧' },
   { topic: '逆向工程', context: 'AIS3 中區資安體驗營' },
 ];
 
