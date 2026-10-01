@@ -2,39 +2,48 @@
 import { teaching } from '../data/profile';
 ---
 
-<ul class="grid">
+<ul class="list">
   {teaching.map((t, i) => (
-    <li class="card reveal" style={`--delay:${i * 60}ms`}>
-      <span class="topic">{t.topic}</span>
-      <span class="context">{t.course ? `${t.context} · ${t.course}` : t.context}</span>
+    <li class="item reveal" style={`--delay:${Math.min(i, 8) * 45}ms`}>
+      <span class="head">
+        <span class="topic">{t.topic}</span>
+        {t.course && <span class="course">{t.course}</span>}
+      </span>
+      <span class="context">{t.context}</span>
     </li>
   ))}
 </ul>
 
 <style>
-  .grid {
+  .list {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 0.85rem;
+    gap: 0.5rem;
   }
 
-  .card {
+  .item {
     display: grid;
     gap: 0.3rem;
-    padding: 1rem 1.15rem;
+    padding: 0.9rem 1.1rem;
     border-radius: var(--radius);
     border: 1px solid var(--line);
     background: var(--surface);
     transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
   }
 
-  .card:hover {
+  .item:hover {
     border-color: var(--line-strong);
     background: var(--surface-hover);
-    transform: translateY(-3px);
+    transform: translateX(3px);
+  }
+
+  .head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
   }
 
   .topic {
@@ -44,9 +53,26 @@ import { teaching } from '../data/profile';
     line-height: 1.45;
   }
 
+  .course {
+    flex-shrink: 0;
+    padding: 0.1rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: color-mix(in srgb, var(--amber) 12%, transparent);
+    color: var(--amber);
+    font-size: 0.78rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
   .context {
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     color: var(--text-faint);
+  }
+
+  @media (max-width: 560px) {
+    .topic { font-size: 0.94rem; }
+    .item { padding: 0.8rem 0.95rem; }
   }
 </style>
