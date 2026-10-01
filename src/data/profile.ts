@@ -38,6 +38,7 @@ export const experience: ExperienceItem[] = [
   { period: '2024 ~ present', org: 'APCS 模擬測驗團隊 x APCS Guide 聯合營隊', role: '工人/講師/隊輔' },
   { period: '2025 ~ 2026', org: '逢甲大學黑客社 12th', role: '學術' },
   { period: '2026 ~ present', org: '逢甲大學黑客社 13th', role: '社長', highlight: true },
+  { period: '2026 September', org: 'AIS3 新型態資安實務暑期課程', role: '結業' },
 ];
 
 /**
@@ -68,6 +69,7 @@ export const contests: Entry[] = [
   { year: '2025', text: '神盾盃 Quals rk.10 Final rk.7 "宵夜吃什麼"' },
   { year: '2026', text: 'AIS3 Pre-Exam rk.170 "cheese_ge"' },
   { year: '2026', text: 'PUPC 金獎 "Strawberrry"', highlight: true },
+  { year: '2026', text: 'TOPC rk.67 銅獎 "Strawberrry"' },
 ];
 
 export const performances: Entry[] = [
