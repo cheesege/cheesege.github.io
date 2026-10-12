@@ -1,0 +1,64 @@
+---
+import { community } from '../data/profile';
+---
+
+<ul class="list">
+  {community.map((item, i) => (
+    <li class="item reveal" style={`--delay:${Math.min(i, 8) * 45}ms`}>
+      <span class="event">{item.event}</span>
+      <span class="role">{item.role}</span>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    padding: 0.9rem 1.1rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: var(--surface);
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  }
+
+  .item:hover {
+    border-color: var(--line-strong);
+    background: var(--surface-hover);
+    transform: translateX(3px);
+  }
+
+  .event {
+    color: var(--text);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.45;
+  }
+
+  .role {
+    flex-shrink: 0;
+    padding: 0.1rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: color-mix(in srgb, var(--amber) 12%, transparent);
+    color: var(--amber);
+    font-size: 0.78rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 560px) {
+    .event { font-size: 0.94rem; }
+    .item { padding: 0.8rem 0.95rem; }
+  }
+</style>

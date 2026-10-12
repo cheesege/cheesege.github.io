@@ -56,6 +56,24 @@ export const teaching: TeachingTopic[] = [
   { topic: '逆向工程', context: 'AIS3 中區資安體驗營' },
 ];
 
+/**
+ * 社群參與：參加過的社群活動。event 寫活動名稱，role 寫身分（會眾、志工、講者…）。
+ */
+export type CommunityItem = { event: string; role: string };
+
+export const community: CommunityItem[] = [
+  { event: 'SITCON 2022', role: '會眾' },
+  { event: 'COSCUP 2023', role: '會眾' },
+  { event: 'SITCON 2024', role: '會眾' },
+  { event: 'COSCUP 2024', role: '會眾' },
+  { event: 'SITCON 2025', role: '會眾' },
+  { event: 'HITCON 2025', role: '會眾' },
+  { event: 'COSCUP 2025', role: '會眾' },
+  { event: 'SITCON 2026', role: '會眾' },
+  { event: 'HITCON 2026', role: '會眾' },
+  { event: 'COSCUP 2026', role: '會眾' },
+];
+
 /** 檢定：沒有時間軸概念，單獨一區。 */
 export type Certification = { name: string; result: string };
 
@@ -137,6 +155,7 @@ export const nav = [
   { id: 'about', label: '關於' },
   { id: 'experience', label: '經歷' },
   { id: 'teaching', label: '教課' },
+  { id: 'community', label: '社群' },
   { id: 'contest', label: '比賽' },
   { id: 'cert', label: '檢定' },
   { id: 'performance', label: '表演' },
