@@ -107,7 +107,7 @@ export type Contact = {
   label: string;
   value: string;
   href: string;
-  icon: 'mail' | 'github' | 'discord' | 'instagram';
+  icon: 'mail' | 'github' | 'discord' | 'instagram' | 'facebook';
   copy?: boolean;
 };
 
@@ -128,16 +128,22 @@ export const contacts: Contact[] = [
   {
     label: 'Discord',
     value: 'cheese_ge',
-    href: 'https://discord.gg/kZ5RV4Wm',
+    href: '#',
     icon: 'discord',
+    copy: true,
     
   },
   {
     label: 'Instagram',
     value: '@chen.cheese.ge',
-    href: '#',
+    href: 'https://instagram.com/chen.cheese.ge',
     icon: 'instagram',
-    copy: true,
+  },
+  {
+    label: 'Facebook',
+    value: 'Eric Chen',
+    href: 'https://www.facebook.com/share/1FHKYkx7B3/',
+    icon: 'facebook',
   },
 ];
 
